@@ -2,6 +2,13 @@
 
 # 🐔 Duco faucet
 Duco faucet code in nutshell yes yes
+To run duco faucet just do  
+
+`export FLASK_APP=faucet`
+
+`flask run`
+
+and thats it
 
 # 🐠 Contribution:
 If you want contribute to the duco faucet code u can always git push to repo, they are in 99% cases times accepted
