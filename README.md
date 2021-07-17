@@ -7,6 +7,7 @@ To run duco faucet just do
 `export FLASK_APP=faucet`
 
 `flask run`
+
 and thats it
 
 # 🐠 Contribution:
