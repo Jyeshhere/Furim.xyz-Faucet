@@ -44,6 +44,7 @@ def giveMeDucos():
     if not ducoUsername:
         return '',400 # returning http code 400 (bad request) if ducoUsername was empty
     else:
+        # here should be try/except to catch timeouts and errors
 
         server = ("server.duinocoin.com", 2811) # Defining server ip(domain) and port
         soc = socket.socket() # defining soc which is related socket variable
@@ -54,22 +55,20 @@ def giveMeDucos():
         soc.send(bytes("LOGI,{},{}".format(faucetUsername, faucetPassword),encoding="utf8")) #loggin in
         pong = soc.recv(8) #Decoding recived info(in that case successfully loged in / or not)
         
-        soc.send(bytes("BALA,{}".format(faucetUsername),encoding="utf8")) # How much duco faucet have
-        pong0 = soc.recv(8) #Decoding it(in that case balance of duinocoin)
-        pong0d = pong0.decode('utf-8') # Decoding it again but in utf-8 syntax???, basically to not receive [b'69.00'] but [69.00]
-        
         soc.send(bytes("SEND,{},{},{}".format(msgToSend, ducoUsername, rand), encoding="utf8")) #Sending funds to someone who gave his username, ducoUsername = Duco username, rand = random amount that person will get 
         pong1 = soc.recv(8) #Decode it(in that case if sending was sucessfuly or not)
         pong1d = pong1.decode('utf-8') #Decoding it with utf-8 syntax, aka to recive pure string not (b'verycoolusername')
 
+        soc.send(bytes("BALA,{}".format(faucetUsername),encoding="utf8")) # How much duco faucet have
+        pong0 = soc.recv(8) #Decoding it(in that case balance of duinocoin)
+        pong0d = pong0.decode('utf-8') # Decoding it again but in utf-8 syntax???, basically to not receive [b'69.00'] but [69.00]
+
         print('[REQUEST] srv version: %s, success? %s, wallet balance: %s, success: %s' % (version, pong, pong0d, pong1d)) # Printing server version, ping response, balance of faucet wallet, if sending duco was successful or not
 
+        # returning json with sended amount, where and balance
         return jsonify(ducoSended=rand,
                     ducoSendedTo=ducoUsername,
                     ducoBalance=pong0d)
-        
-
-            
 
 # error 429 aka cooldown website
 @app.errorhandler(429)
