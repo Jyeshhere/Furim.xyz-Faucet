@@ -16,3 +16,7 @@ Email: `remusmaluss@ctemplar.com / remusmaluss@gmail.com`
 XMR only: `42Q6S9RUxHy7NyfQB6uwmwbXK1Yvd3FzFCGz57a8Mh6J3xtLQNPvhPoKdVnKss8e61aj82Xy8Bejr9bb8iUHGiKh7hbJW4n `
 
 Vultr: `https://www.vultr.com/?ref=8867604-6G`(u get 100$ i get 25$)
+
+# 🐇 Disclaimer
+
+Repo is licensed under gplv2 but if u can i will appreciate posting info on website about this repo if someone wants to create own faucet.
